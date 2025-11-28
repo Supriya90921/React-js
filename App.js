@@ -27,9 +27,9 @@ function App() {
     let newproductList = [...productList];
     let newTotalAmount = totalAmount;
     newproductList[index].quantity++;
-  totalAmount += newproductList[index].price;
+    totalAmount += newproductList[index].price;
     setproductList(newproductList);
-    setTotalAmount(totalAmount);
+    setTotalAmount(newTotalAmount);
   };
 
   const decrementQuantity = (index) => {
@@ -44,8 +44,9 @@ function App() {
   };
 
   const resetCart = () => {
+ 
     let newproductList = [...productList];
-    newproductList.map((products) => {
+    newproductList.forEach((products) => {
       products.quantity = 0;
     });
     setproductList(newproductList);
@@ -61,7 +62,7 @@ function App() {
     newproductList.splice(index, 1);
     setproductList(newproductList);
   };
-  
+
   const addItem = (name, price) => {
     let newproductList = [...productList];
     newproductList.push({
@@ -69,14 +70,14 @@ function App() {
       name: name,
       quantity: 0,
     });
-    setproductList(newproductList);  
+    setproductList(newproductList);
   };
 
   return (
     <>
       <Navbar />
       <main className="container mt-4">
-        <AddItem  addItem={addItem}/>
+        <AddItem addItem={addItem} />
         <ProductList
           productList={productList}
           incrementQuantity={incrementQuantity}
